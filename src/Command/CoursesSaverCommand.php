@@ -30,7 +30,7 @@ class CoursesSaverCommand extends ContainerAwareCommand
         $ticker = $binanceApi->candlesticks('ETHBTC');
 
         $pairsToParsing = [
-            'NEOBTC', 'NASBTC', 'MIOTABTC', 'BNBBTC', 'ETHBTC',
+            'NEOBTC', 'NASBTC', 'IOTABTC', 'BNBBTC', 'ETHBTC',
             'DASHBTC', 'AIONBTC', 'ADABTC', 'EOSBTC', 'RDNBTC',
             'ICXBTC', 'CNDBTC', 'QTUMBTC', 'QASHBTC', 'OMGBTC',
             'QSPBTC'
