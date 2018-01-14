@@ -1,0 +1,123 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="restore")
+ */
+class Restore
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $user_id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $hashlink;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateofexpire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Restore")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    /*
+      private $restore; */
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Restore
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set hashlink
+     *
+     * @param string $hashlink
+     *
+     * @return Restore
+     */
+    public function setHashlink($hashlink)
+    {
+        $this->hashlink = $hashlink;
+
+        return $this;
+    }
+
+    /**
+     * Get hashlink
+     *
+     * @return string
+     */
+    public function getHashlink()
+    {
+        return $this->hashlink;
+    }
+
+    /**
+     * Set dateofexpire
+     *
+     * @param \DateTime $dateofexpire
+     *
+     * @return Restore
+     */
+    public function setDateofexpire($dateofexpire)
+    {
+        $this->dateofexpire = $dateofexpire;
+
+        return $this;
+    }
+
+    /**
+     * Get dateofexpire
+     *
+     * @return \DateTime
+     */
+    public function getDateofexpire()
+    {
+        return $this->dateofexpire;
+    }
+}

@@ -30,8 +30,9 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
 
-        if ('/' === $pathinfo) {
-            throw new Symfony\Component\Routing\Exception\NoConfigurationException();
+        // login
+        if ('/login' === $pathinfo) {
+            return array (  '_controller' => 'App\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

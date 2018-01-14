@@ -1,0 +1,350 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="partner_balances_logging")
+ */
+class PartnerBalancesLogging
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", unique=true, nullable=true)
+     */
+    private $exchange_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $partner_id;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $logtime;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $rewardrub;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $rewardusd;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $rewardbtc;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $balancerub_before;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $balancerub_after;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $available_for_pay_rub;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $paid_rub;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="PartnerRewardLogging")
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
+     */
+    private $partner_reward;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set exchangeId
+     *
+     * @param integer $exchangeId
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setExchangeId($exchangeId)
+    {
+        $this->exchange_id = $exchangeId;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeId
+     *
+     * @return integer
+     */
+    public function getExchangeId()
+    {
+        return $this->exchange_id;
+    }
+
+    /**
+     * Set partnerId
+     *
+     * @param integer $partnerId
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setPartnerId($partnerId)
+    {
+        $this->partner_id = $partnerId;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerId
+     *
+     * @return integer
+     */
+    public function getPartnerId()
+    {
+        return $this->partner_id;
+    }
+
+    /**
+     * Set logtime
+     *
+     * @param \DateTime $logtime
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setLogtime($logtime)
+    {
+        $this->logtime = $logtime;
+
+        return $this;
+    }
+
+    /**
+     * Get logtime
+     *
+     * @return \DateTime
+     */
+    public function getLogtime()
+    {
+        return $this->logtime;
+    }
+
+    /**
+     * Set rewardrub
+     *
+     * @param float $rewardrub
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setRewardrub($rewardrub)
+    {
+        $this->rewardrub = $rewardrub;
+
+        return $this;
+    }
+
+    /**
+     * Get rewardrub
+     *
+     * @return float
+     */
+    public function getRewardrub()
+    {
+        return $this->rewardrub;
+    }
+
+    /**
+     * Set rewardusd
+     *
+     * @param float $rewardusd
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setRewardusd($rewardusd)
+    {
+        $this->rewardusd = $rewardusd;
+
+        return $this;
+    }
+
+    /**
+     * Get rewardusd
+     *
+     * @return float
+     */
+    public function getRewardusd()
+    {
+        return $this->rewardusd;
+    }
+
+    /**
+     * Set rewardbtc
+     *
+     * @param float $rewardbtc
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setRewardbtc($rewardbtc)
+    {
+        $this->rewardbtc = $rewardbtc;
+
+        return $this;
+    }
+
+    /**
+     * Get rewardbtc
+     *
+     * @return float
+     */
+    public function getRewardbtc()
+    {
+        return $this->rewardbtc;
+    }
+
+    /**
+     * Set balancerubBefore
+     *
+     * @param float $balancerubBefore
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setBalancerubBefore($balancerubBefore)
+    {
+        $this->balancerub_before = $balancerubBefore;
+
+        return $this;
+    }
+
+    /**
+     * Get balancerubBefore
+     *
+     * @return float
+     */
+    public function getBalancerubBefore()
+    {
+        return $this->balancerub_before;
+    }
+
+    /**
+     * Set balancerubAfter
+     *
+     * @param float $balancerubAfter
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setBalancerubAfter($balancerubAfter)
+    {
+        $this->balancerub_after = $balancerubAfter;
+
+        return $this;
+    }
+
+    /**
+     * Get balancerubAfter
+     *
+     * @return float
+     */
+    public function getBalancerubAfter()
+    {
+        return $this->balancerub_after;
+    }
+
+    /**
+     * Set availableForPayRub
+     *
+     * @param float $availableForPayRub
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setAvailableForPayRub($availableForPayRub)
+    {
+        $this->available_for_pay_rub = $availableForPayRub;
+
+        return $this;
+    }
+
+    /**
+     * Get availableForPayRub
+     *
+     * @return float
+     */
+    public function getAvailableForPayRub()
+    {
+        return $this->available_for_pay_rub;
+    }
+
+    /**
+     * Set paidRub
+     *
+     * @param float $paidRub
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setPaidRub($paidRub)
+    {
+        $this->paid_rub = $paidRub;
+
+        return $this;
+    }
+
+    /**
+     * Get paidRub
+     *
+     * @return float
+     */
+    public function getPaidRub()
+    {
+        return $this->paid_rub;
+    }
+
+    /**
+     * Set partnerReward
+     *
+     * @param \AppBundle\Entity\User $partnerReward
+     *
+     * @return PartnerBalancesLogging
+     */
+    public function setPartnerReward(\AppBundle\Entity\User $partnerReward = null)
+    {
+        $this->partner_reward = $partnerReward;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerReward
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getPartnerReward()
+    {
+        return $this->partner_reward;
+    }
+}

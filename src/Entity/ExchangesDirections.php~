@@ -1,0 +1,612 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="exchanges_directions")
+ */
+class ExchangesDirections
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", length=11)
+     */
+    private $pay_id;
+
+    /**
+     * @ORM\Column(type="integer", length=11)
+     */
+    private $buy_id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $rows_to_fill;
+
+    /**
+     * @ORM\Column(type="string", length=11)
+     */
+    private $side;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $buy;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $sell;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $zero;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 0})
+     */
+    private $extra_zero;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $spread;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 0})
+     */
+    private $extra_spread;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $last;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default": true})
+     */
+    private $enabled;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $partner_percent_stage_1;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $partner_percent_stage_2;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $partner_percent_stage_3;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $partner_percent_stage_4;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $partner_percent_stage_5;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="ExchangesDirections")
+     * @ORM\JoinColumn(name="pay_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $directions_pay;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="ExchangesDirections")
+     * @ORM\JoinColumn(name="buy_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $directions_buy;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set payId
+     *
+     * @param integer $payId
+     *
+     * @return ExchangesDirections
+     */
+    public function setPayId($payId)
+    {
+        $this->pay_id = $payId;
+
+        return $this;
+    }
+
+    /**
+     * Get payId
+     *
+     * @return integer
+     */
+    public function getPayId()
+    {
+        return $this->pay_id;
+    }
+
+    /**
+     * Set buyId
+     *
+     * @param integer $buyId
+     *
+     * @return ExchangesDirections
+     */
+    public function setBuyId($buyId)
+    {
+        $this->buy_id = $buyId;
+
+        return $this;
+    }
+
+    /**
+     * Get buyId
+     *
+     * @return integer
+     */
+    public function getBuyId()
+    {
+        return $this->buy_id;
+    }
+
+    /**
+     * Set rowsToFill
+     *
+     * @param string $rowsToFill
+     *
+     * @return ExchangesDirections
+     */
+    public function setRowsToFill($rowsToFill)
+    {
+        $this->rows_to_fill = $rowsToFill;
+
+        return $this;
+    }
+
+    /**
+     * Get rowsToFill
+     *
+     * @return string
+     */
+    public function getRowsToFill()
+    {
+        return $this->rows_to_fill;
+    }
+
+    /**
+     * Set side
+     *
+     * @param string $side
+     *
+     * @return ExchangesDirections
+     */
+    public function setSide($side)
+    {
+        $this->side = $side;
+
+        return $this;
+    }
+
+    /**
+     * Get side
+     *
+     * @return string
+     */
+    public function getSide()
+    {
+        return $this->side;
+    }
+
+    /**
+     * Set buy
+     *
+     * @param float $buy
+     *
+     * @return ExchangesDirections
+     */
+    public function setBuy($buy)
+    {
+        $this->buy = $buy;
+
+        return $this;
+    }
+
+    /**
+     * Get buy
+     *
+     * @return float
+     */
+    public function getBuy()
+    {
+        return $this->buy;
+    }
+
+    /**
+     * Set sell
+     *
+     * @param float $sell
+     *
+     * @return ExchangesDirections
+     */
+    public function setSell($sell)
+    {
+        $this->sell = $sell;
+
+        return $this;
+    }
+
+    /**
+     * Get sell
+     *
+     * @return float
+     */
+    public function getSell()
+    {
+        return $this->sell;
+    }
+
+    /**
+     * Set date
+     *
+     * @param integer $date
+     *
+     * @return ExchangesDirections
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return integer
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set zero
+     *
+     * @param float $zero
+     *
+     * @return ExchangesDirections
+     */
+    public function setZero($zero)
+    {
+        $this->zero = $zero;
+
+        return $this;
+    }
+
+    /**
+     * Get zero
+     *
+     * @return float
+     */
+    public function getZero()
+    {
+        return $this->zero;
+    }
+
+    /**
+     * Set extraZero
+     *
+     * @param float $extraZero
+     *
+     * @return ExchangesDirections
+     */
+    public function setExtraZero($extraZero)
+    {
+        $this->extra_zero = $extraZero;
+
+        return $this;
+    }
+
+    /**
+     * Get extraZero
+     *
+     * @return float
+     */
+    public function getExtraZero()
+    {
+        return $this->extra_zero;
+    }
+
+    /**
+     * Set spread
+     *
+     * @param float $spread
+     *
+     * @return ExchangesDirections
+     */
+    public function setSpread($spread)
+    {
+        $this->spread = $spread;
+
+        return $this;
+    }
+
+    /**
+     * Get spread
+     *
+     * @return float
+     */
+    public function getSpread()
+    {
+        return $this->spread;
+    }
+
+    /**
+     * Set extraSpread
+     *
+     * @param float $extraSpread
+     *
+     * @return ExchangesDirections
+     */
+    public function setExtraSpread($extraSpread)
+    {
+        $this->extra_spread = $extraSpread;
+
+        return $this;
+    }
+
+    /**
+     * Get extraSpread
+     *
+     * @return float
+     */
+    public function getExtraSpread()
+    {
+        return $this->extra_spread;
+    }
+
+    /**
+     * Set last
+     *
+     * @param float $last
+     *
+     * @return ExchangesDirections
+     */
+    public function setLast($last)
+    {
+        $this->last = $last;
+
+        return $this;
+    }
+
+    /**
+     * Get last
+     *
+     * @return float
+     */
+    public function getLast()
+    {
+        return $this->last;
+    }
+
+    /**
+     * Set partnerPercentStage1
+     *
+     * @param float $partnerPercentStage1
+     *
+     * @return ExchangesDirections
+     */
+    public function setPartnerPercentStage1($partnerPercentStage1)
+    {
+        $this->partner_percent_stage_1 = $partnerPercentStage1;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage1
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage1()
+    {
+        return $this->partner_percent_stage_1;
+    }
+
+    /**
+     * Set partnerPercentStage2
+     *
+     * @param float $partnerPercentStage2
+     *
+     * @return ExchangesDirections
+     */
+    public function setPartnerPercentStage2($partnerPercentStage2)
+    {
+        $this->partner_percent_stage_2 = $partnerPercentStage2;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage2
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage2()
+    {
+        return $this->partner_percent_stage_2;
+    }
+
+    /**
+     * Set partnerPercentStage3
+     *
+     * @param float $partnerPercentStage3
+     *
+     * @return ExchangesDirections
+     */
+    public function setPartnerPercentStage3($partnerPercentStage3)
+    {
+        $this->partner_percent_stage_3 = $partnerPercentStage3;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage3
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage3()
+    {
+        return $this->partner_percent_stage_3;
+    }
+
+    /**
+     * Set partnerPercentStage4
+     *
+     * @param float $partnerPercentStage4
+     *
+     * @return ExchangesDirections
+     */
+    public function setPartnerPercentStage4($partnerPercentStage4)
+    {
+        $this->partner_percent_stage_4 = $partnerPercentStage4;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage4
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage4()
+    {
+        return $this->partner_percent_stage_4;
+    }
+
+    /**
+     * Set partnerPercentStage5
+     *
+     * @param float $partnerPercentStage5
+     *
+     * @return ExchangesDirections
+     */
+    public function setPartnerPercentStage5($partnerPercentStage5)
+    {
+        $this->partner_percent_stage_5 = $partnerPercentStage5;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage5
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage5()
+    {
+        return $this->partner_percent_stage_5;
+    }
+
+    /**
+     * Set directionsPay
+     *
+     * @param \AppBundle\Entity\Payments $directionsPay
+     *
+     * @return ExchangesDirections
+     */
+    public function setDirectionsPay(\AppBundle\Entity\Payments $directionsPay = null)
+    {
+        $this->directions_pay = $directionsPay;
+
+        return $this;
+    }
+
+    /**
+     * Get directionsPay
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getDirectionsPay()
+    {
+        return $this->directions_pay;
+    }
+
+    /**
+     * Set directionsBuy
+     *
+     * @param \AppBundle\Entity\Payments $directionsBuy
+     *
+     * @return ExchangesDirections
+     */
+    public function setDirectionsBuy(\AppBundle\Entity\Payments $directionsBuy = null)
+    {
+        $this->directions_buy = $directionsBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get directionsBuy
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getDirectionsBuy()
+    {
+        return $this->directions_buy;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     *
+     * @return ExchangesDirections
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+}

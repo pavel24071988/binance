@@ -1,0 +1,641 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="partner_reward_logging")
+ */
+class PartnerRewardLogging
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", unique=true, nullable=true)
+     */
+    private $exchange_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $partner_id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $sell_id;
+
+    /**
+     * @ORM\Column(type="string", length=11, nullable=true)
+     */
+    private $sellname;
+
+    /**
+     * @ORM\Column(type="string", length=22, nullable=true)
+     */
+    private $sellnamelong;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $sellamount;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $buy_id;
+
+    /**
+     * @ORM\Column(type="string", length=11, nullable=true)
+     */
+    private $buyname;
+
+    /**
+     * @ORM\Column(type="string", length=22, nullable=true)
+     */
+    private $buynamelong;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $buyamount;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $logtime;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $rewardrub;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $rewardusd;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $rewardbtc;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $dealamountrub;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $btcbild;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 0})
+     */
+    private $balancerub_before;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 0})
+     */
+    private $balancerub_after;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="PartnerRewardLogging")
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id")
+     */
+    private $partner_reward;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="PartnerRewardLogging")
+     * @ORM\JoinColumn(name="sell_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $exchange_sell;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="PartnerRewardLogging")
+     * @ORM\JoinColumn(name="buy_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $exchange_buy;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set exchangeId
+     *
+     * @param integer $exchangeId
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setExchangeId($exchangeId)
+    {
+        $this->exchange_id = $exchangeId;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeId
+     *
+     * @return integer
+     */
+    public function getExchangeId()
+    {
+        return $this->exchange_id;
+    }
+
+    /**
+     * Set partnerId
+     *
+     * @param integer $partnerId
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setPartnerId($partnerId)
+    {
+        $this->partner_id = $partnerId;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerId
+     *
+     * @return integer
+     */
+    public function getPartnerId()
+    {
+        return $this->partner_id;
+    }
+
+    /**
+     * Set sellId
+     *
+     * @param integer $sellId
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setSellId($sellId)
+    {
+        $this->sell_id = $sellId;
+
+        return $this;
+    }
+
+    /**
+     * Get sellId
+     *
+     * @return integer
+     */
+    public function getSellId()
+    {
+        return $this->sell_id;
+    }
+
+    /**
+     * Set sellname
+     *
+     * @param string $sellname
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setSellname($sellname)
+    {
+        $this->sellname = $sellname;
+
+        return $this;
+    }
+
+    /**
+     * Get sellname
+     *
+     * @return string
+     */
+    public function getSellname()
+    {
+        return $this->sellname;
+    }
+
+    /**
+     * Set sellnamelong
+     *
+     * @param string $sellnamelong
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setSellnamelong($sellnamelong)
+    {
+        $this->sellnamelong = $sellnamelong;
+
+        return $this;
+    }
+
+    /**
+     * Get sellnamelong
+     *
+     * @return string
+     */
+    public function getSellnamelong()
+    {
+        return $this->sellnamelong;
+    }
+
+    /**
+     * Set sellamount
+     *
+     * @param float $sellamount
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setSellamount($sellamount)
+    {
+        $this->sellamount = $sellamount;
+
+        return $this;
+    }
+
+    /**
+     * Get sellamount
+     *
+     * @return float
+     */
+    public function getSellamount()
+    {
+        return $this->sellamount;
+    }
+
+    /**
+     * Set buyId
+     *
+     * @param integer $buyId
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setBuyId($buyId)
+    {
+        $this->buy_id = $buyId;
+
+        return $this;
+    }
+
+    /**
+     * Get buyId
+     *
+     * @return integer
+     */
+    public function getBuyId()
+    {
+        return $this->buy_id;
+    }
+
+    /**
+     * Set buyname
+     *
+     * @param string $buyname
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setBuyname($buyname)
+    {
+        $this->buyname = $buyname;
+
+        return $this;
+    }
+
+    /**
+     * Get buyname
+     *
+     * @return string
+     */
+    public function getBuyname()
+    {
+        return $this->buyname;
+    }
+
+    /**
+     * Set buynamelong
+     *
+     * @param string $buynamelong
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setBuynamelong($buynamelong)
+    {
+        $this->buynamelong = $buynamelong;
+
+        return $this;
+    }
+
+    /**
+     * Get buynamelong
+     *
+     * @return string
+     */
+    public function getBuynamelong()
+    {
+        return $this->buynamelong;
+    }
+
+    /**
+     * Set buyamount
+     *
+     * @param float $buyamount
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setBuyamount($buyamount)
+    {
+        $this->buyamount = $buyamount;
+
+        return $this;
+    }
+
+    /**
+     * Get buyamount
+     *
+     * @return float
+     */
+    public function getBuyamount()
+    {
+        return $this->buyamount;
+    }
+
+    /**
+     * Set logtime
+     *
+     * @param \DateTime $logtime
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setLogtime($logtime)
+    {
+        $this->logtime = $logtime;
+
+        return $this;
+    }
+
+    /**
+     * Get logtime
+     *
+     * @return \DateTime
+     */
+    public function getLogtime()
+    {
+        return $this->logtime;
+    }
+
+    /**
+     * Set rewardrub
+     *
+     * @param float $rewardrub
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setRewardrub($rewardrub)
+    {
+        $this->rewardrub = $rewardrub;
+
+        return $this;
+    }
+
+    /**
+     * Get rewardrub
+     *
+     * @return float
+     */
+    public function getRewardrub()
+    {
+        return $this->rewardrub;
+    }
+
+    /**
+     * Set rewardusd
+     *
+     * @param float $rewardusd
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setRewardusd($rewardusd)
+    {
+        $this->rewardusd = $rewardusd;
+
+        return $this;
+    }
+
+    /**
+     * Get rewardusd
+     *
+     * @return float
+     */
+    public function getRewardusd()
+    {
+        return $this->rewardusd;
+    }
+
+    /**
+     * Set rewardbtc
+     *
+     * @param float $rewardbtc
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setRewardbtc($rewardbtc)
+    {
+        $this->rewardbtc = $rewardbtc;
+
+        return $this;
+    }
+
+    /**
+     * Get rewardbtc
+     *
+     * @return float
+     */
+    public function getRewardbtc()
+    {
+        return $this->rewardbtc;
+    }
+
+    /**
+     * Set dealamountrub
+     *
+     * @param float $dealamountrub
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setDealamountrub($dealamountrub)
+    {
+        $this->dealamountrub = $dealamountrub;
+
+        return $this;
+    }
+
+    /**
+     * Get dealamountrub
+     *
+     * @return float
+     */
+    public function getDealamountrub()
+    {
+        return $this->dealamountrub;
+    }
+
+    /**
+     * Set btcbild
+     *
+     * @param string $btcbild
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setBtcbild($btcbild)
+    {
+        $this->btcbild = $btcbild;
+
+        return $this;
+    }
+
+    /**
+     * Get btcbild
+     *
+     * @return string
+     */
+    public function getBtcbild()
+    {
+        return $this->btcbild;
+    }
+
+    /**
+     * Set balancerubBefore
+     *
+     * @param float $balancerubBefore
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setBalancerubBefore($balancerubBefore)
+    {
+        $this->balancerub_before = $balancerubBefore;
+
+        return $this;
+    }
+
+    /**
+     * Get balancerubBefore
+     *
+     * @return float
+     */
+    public function getBalancerubBefore()
+    {
+        return $this->balancerub_before;
+    }
+
+    /**
+     * Set balancerubAfter
+     *
+     * @param float $balancerubAfter
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setBalancerubAfter($balancerubAfter)
+    {
+        $this->balancerub_after = $balancerubAfter;
+
+        return $this;
+    }
+
+    /**
+     * Get balancerubAfter
+     *
+     * @return float
+     */
+    public function getBalancerubAfter()
+    {
+        return $this->balancerub_after;
+    }
+
+    /**
+     * Set partnerReward
+     *
+     * @param \AppBundle\Entity\User $partnerReward
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setPartnerReward(\AppBundle\Entity\User $partnerReward = null)
+    {
+        $this->partner_reward = $partnerReward;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerReward
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getPartnerReward()
+    {
+        return $this->partner_reward;
+    }
+
+    /**
+     * Set exchangeSell
+     *
+     * @param \AppBundle\Entity\Payments $exchangeSell
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setExchangeSell(\AppBundle\Entity\Payments $exchangeSell = null)
+    {
+        $this->exchange_sell = $exchangeSell;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeSell
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getExchangeSell()
+    {
+        return $this->exchange_sell;
+    }
+
+    /**
+     * Set exchangeBuy
+     *
+     * @param \AppBundle\Entity\Payments $exchangeBuy
+     *
+     * @return PartnerRewardLogging
+     */
+    public function setExchangeBuy(\AppBundle\Entity\Payments $exchangeBuy = null)
+    {
+        $this->exchange_buy = $exchangeBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeBuy
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getExchangeBuy()
+    {
+        return $this->exchange_buy;
+    }
+}

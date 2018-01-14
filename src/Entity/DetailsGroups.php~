@@ -1,0 +1,116 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="details_groups")
+ */
+class DetailsGroups
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="integer", options={"default":0})
+     */
+    private $sort;
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $payments = [];
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return DetailsGroups
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set payments
+     *
+     * @param array $payments
+     *
+     * @return DetailsGroups
+     */
+    public function setPayments($payments)
+    {
+        $this->payments = $payments;
+
+        return $this;
+    }
+
+    /**
+     * Get payments
+     *
+     * @return array
+     */
+    public function getPayments()
+    {
+        return $this->payments;
+    }
+
+    /**
+     * Set sort
+     *
+     * @param integer $sort
+     *
+     * @return DetailsGroups
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
+    /**
+     * Get sort
+     *
+     * @return integer
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+}

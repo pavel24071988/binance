@@ -1,0 +1,87 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="monero_adresses")
+ */
+class MoneroAdresses
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $adress;
+
+    /**
+     * @ORM\Column(type="integer", length=1, options={"default": 1})
+     */
+    private $show_adress;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set adress
+     *
+     * @param string $adress
+     *
+     * @return BitcoinAdresses
+     */
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return string
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+
+    /**
+     * Set showAdress
+     *
+     * @param integer $showAdress
+     *
+     * @return BitcoinAdresses
+     */
+    public function setShowAdress($showAdress)
+    {
+        $this->show_adress = $showAdress;
+
+        return $this;
+    }
+
+    /**
+     * Get showAdress
+     *
+     * @return integer
+     */
+    public function getShowAdress()
+    {
+        return $this->show_adress;
+    }
+}

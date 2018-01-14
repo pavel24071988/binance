@@ -1,0 +1,319 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ */
+class User
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateofcreate;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $active;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $partnerlink;
+
+    /**
+     * @ORM\Column(type="integer", length=1, options={"default": 1})
+     */
+    private $stage;
+
+    /**
+     * @ORM\Column(type="float", length=4, options={"default": 1})
+     */
+    private $extracoefficient;
+
+    /**
+     * @ORM\Column(type="integer", length=1, options={"default": 1})
+     */
+    private $send_mails;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $client_ip;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $referrer_id;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set dateofcreate
+     *
+     * @param \DateTime $dateofcreate
+     *
+     * @return User
+     */
+    public function setDateofcreate($dateofcreate)
+    {
+        $this->dateofcreate = $dateofcreate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateofcreate
+     *
+     * @return \DateTime
+     */
+    public function getDateofcreate()
+    {
+        return $this->dateofcreate;
+    }
+
+    /**
+     * Set active
+     *
+     * @param integer $active
+     *
+     * @return User
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return integer
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set partnerlink
+     *
+     * @param string $partnerlink
+     *
+     * @return User
+     */
+    public function setPartnerlink($partnerlink)
+    {
+        $this->partnerlink = $partnerlink;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerlink
+     *
+     * @return string
+     */
+    public function getPartnerlink()
+    {
+        return $this->partnerlink;
+    }
+
+    /**
+     * Set stage
+     *
+     * @param integer $stage
+     *
+     * @return User
+     */
+    public function setStage($stage)
+    {
+        $this->stage = $stage;
+
+        return $this;
+    }
+
+    /**
+     * Get stage
+     *
+     * @return integer
+     */
+    public function getStage()
+    {
+        return $this->stage;
+    }
+
+    /**
+     * Set extracoefficient
+     *
+     * @param float $extracoefficient
+     *
+     * @return User
+     */
+    public function setExtracoefficient($extracoefficient)
+    {
+        $this->extracoefficient = $extracoefficient;
+
+        return $this;
+    }
+
+    /**
+     * Get extracoefficient
+     *
+     * @return float
+     */
+    public function getExtracoefficient()
+    {
+        return $this->extracoefficient;
+    }
+
+    /**
+     * Set sendMails
+     *
+     * @param integer $sendMails
+     *
+     * @return User
+     */
+    public function setSendMails($sendMails)
+    {
+        $this->send_mails = $sendMails;
+
+        return $this;
+    }
+
+    /**
+     * Get sendMails
+     *
+     * @return integer
+     */
+    public function getSendMails()
+    {
+        return $this->send_mails;
+    }
+
+    /**
+     * Set clientIp
+     *
+     * @param string $clientIp
+     *
+     * @return User
+     */
+    public function setClientIp($clientIp)
+    {
+        $this->client_ip = $clientIp;
+
+        return $this;
+    }
+
+    /**
+     * Get clientIp
+     *
+     * @return string
+     */
+    public function getClientIp()
+    {
+        return $this->client_ip;
+    }
+
+    /**
+     * Set referrerId
+     *
+     * @param integer $referrerId
+     *
+     * @return User
+     */
+    public function setReferrerId($referrerId)
+    {
+        $this->referrer_id = $referrerId;
+
+        return $this;
+    }
+
+    /**
+     * Get referrerId
+     *
+     * @return integer
+     */
+    public function getReferrerId()
+    {
+        return $this->referrer_id;
+    }
+}

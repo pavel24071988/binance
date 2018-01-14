@@ -1,0 +1,204 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="payments")
+ */
+class Payments
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=11)
+     */
+    private $bc_code;
+
+    /**
+     * @ORM\Column(type="integer", length=11)
+     */
+    private $currency_id;
+
+    /**
+     * @ORM\Column(type="integer", length=11)
+     */
+    private $sort;
+
+    /**
+     * @ORM\Column(type="string", options={"default": 0})
+     */
+    private $outcomission;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Currencies", inversedBy="Payments")
+     * @ORM\JoinColumn(name="currency_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $payments_currency;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Payments
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set bcCode
+     *
+     * @param string $bcCode
+     *
+     * @return Payments
+     */
+    public function setBcCode($bcCode)
+    {
+        $this->bc_code = $bcCode;
+
+        return $this;
+    }
+
+    /**
+     * Get bcCode
+     *
+     * @return string
+     */
+    public function getBcCode()
+    {
+        return $this->bc_code;
+    }
+
+    /**
+     * Set currencyId
+     *
+     * @param integer $currencyId
+     *
+     * @return Payments
+     */
+    public function setCurrencyId($currencyId)
+    {
+        $this->currency_id = $currencyId;
+
+        return $this;
+    }
+
+    /**
+     * Get currencyId
+     *
+     * @return integer
+     */
+    public function getCurrencyId()
+    {
+        return $this->currency_id;
+    }
+
+    /**
+     * Set sort
+     *
+     * @param integer $sort
+     *
+     * @return Payments
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
+    /**
+     * Get sort
+     *
+     * @return integer
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * Set paymentsCurrency
+     *
+     * @param \AppBundle\Entity\Currencies $paymentsCurrency
+     *
+     * @return Payments
+     */
+    public function setPaymentsCurrency(\AppBundle\Entity\Currencies $paymentsCurrency = null)
+    {
+        $this->payments_currency = $paymentsCurrency;
+
+        return $this;
+    }
+
+    /**
+     * Get paymentsCurrency
+     *
+     * @return \AppBundle\Entity\Currencies
+     */
+    public function getPaymentsCurrency()
+    {
+        return $this->payments_currency;
+    }
+
+    /**
+     * Set outcomission
+     *
+     * @param float $outcomission
+     *
+     * @return Payments
+     */
+    public function setOutcomission($outcomission)
+    {
+        $this->outcomission = $outcomission;
+
+        return $this;
+    }
+
+    /**
+     * Get outcomission
+     *
+     * @return float
+     */
+    public function getOutcomission()
+    {
+        return $this->outcomission;
+    }
+}

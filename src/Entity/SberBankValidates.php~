@@ -1,0 +1,117 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="sber_bank_validates")
+ */
+class SberBankValidates
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $user_id;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $phonenumber;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $fio;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return SberBankValidates
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set phonenumber
+     *
+     * @param string $phonenumber
+     *
+     * @return SberBankValidates
+     */
+    public function setPhonenumber($phonenumber)
+    {
+        $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phonenumber
+     *
+     * @return string
+     */
+    public function getPhonenumber()
+    {
+        return $this->phonenumber;
+    }
+
+    /**
+     * Set fio
+     *
+     * @param string $fio
+     *
+     * @return SberBankValidates
+     */
+    public function setFio($fio)
+    {
+        $this->fio = $fio;
+
+        return $this;
+    }
+
+    /**
+     * Get fio
+     *
+     * @return string
+     */
+    public function getFio()
+    {
+        return $this->fio;
+    }
+}

@@ -1,0 +1,234 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="custom_exchanges")
+ */
+class CustomExchanges
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $currency_sell_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $amount_sell;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $currency_buy_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $amount_buy;
+
+    /**
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     */
+    private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Currencies", inversedBy="CustomExchanges")
+     * @ORM\JoinColumn(name="currency_sell_id", referencedColumnName="id", onDelete="NO ACTION")
+     */
+    private $custom_exchange_currency_sell;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Currencies", inversedBy="CustomExchanges")
+     * @ORM\JoinColumn(name="currency_buy_id", referencedColumnName="id", onDelete="NO ACTION")
+     */
+    private $custom_exchange_currency_buy;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set currencySellId
+     *
+     * @param integer $currencySellId
+     *
+     * @return CustomExchanges
+     */
+    public function setCurrencySellId($currencySellId)
+    {
+        $this->currency_sell_id = $currencySellId;
+
+        return $this;
+    }
+
+    /**
+     * Get currencySellId
+     *
+     * @return integer
+     */
+    public function getCurrencySellId()
+    {
+        return $this->currency_sell_id;
+    }
+
+    /**
+     * Set amountSell
+     *
+     * @param integer $amountSell
+     *
+     * @return CustomExchanges
+     */
+    public function setAmountSell($amountSell)
+    {
+        $this->amount_sell = $amountSell;
+
+        return $this;
+    }
+
+    /**
+     * Get amountSell
+     *
+     * @return integer
+     */
+    public function getAmountSell()
+    {
+        return $this->amount_sell;
+    }
+
+    /**
+     * Set currencyBuyId
+     *
+     * @param integer $currencyBuyId
+     *
+     * @return CustomExchanges
+     */
+    public function setCurrencyBuyId($currencyBuyId)
+    {
+        $this->currency_buy_id = $currencyBuyId;
+
+        return $this;
+    }
+
+    /**
+     * Get currencyBuyId
+     *
+     * @return integer
+     */
+    public function getCurrencyBuyId()
+    {
+        return $this->currency_buy_id;
+    }
+
+    /**
+     * Set amountBuy
+     *
+     * @param integer $amountBuy
+     *
+     * @return CustomExchanges
+     */
+    public function setAmountBuy($amountBuy)
+    {
+        $this->amount_buy = $amountBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get amountBuy
+     *
+     * @return integer
+     */
+    public function getAmountBuy()
+    {
+        return $this->amount_buy;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return CustomExchanges
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set customExchangeCurrencySell
+     *
+     * @param \AppBundle\Entity\Currencies $customExchangeCurrencySell
+     *
+     * @return CustomExchanges
+     */
+    public function setCustomExchangeCurrencySell(\AppBundle\Entity\Currencies $customExchangeCurrencySell = null)
+    {
+        $this->custom_exchange_currency_sell = $customExchangeCurrencySell;
+
+        return $this;
+    }
+
+    /**
+     * Get customExchangeCurrencySell
+     *
+     * @return \AppBundle\Entity\Currencies
+     */
+    public function getCustomExchangeCurrencySell()
+    {
+        return $this->custom_exchange_currency_sell;
+    }
+
+    /**
+     * Set customExchangeCurrencyBuy
+     *
+     * @param \AppBundle\Entity\Currencies $customExchangeCurrencyBuy
+     *
+     * @return CustomExchanges
+     */
+    public function setCustomExchangeCurrencyBuy(\AppBundle\Entity\Currencies $customExchangeCurrencyBuy = null)
+    {
+        $this->custom_exchange_currency_buy = $customExchangeCurrencyBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get customExchangeCurrencyBuy
+     *
+     * @return \AppBundle\Entity\Currencies
+     */
+    public function getCustomExchangeCurrencyBuy()
+    {
+        return $this->custom_exchange_currency_buy;
+    }
+}

@@ -1,0 +1,176 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="bitcoin_adresses")
+ */
+class BitcoinAdresses
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $adress;
+
+    /**
+     * @ORM\Column(type="integer", length=1, options={"default": 1})
+     */
+    private $show_adress;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $wallets_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BitcoinWallets", inversedBy="BitcoinAdresses")
+     * @ORM\JoinColumn(name="wallets_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $wallets;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set adress
+     *
+     * @param string $adress
+     *
+     * @return BitcoinAdresses
+     */
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return string
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+
+    /**
+     * Set showAdress
+     *
+     * @param integer $showAdress
+     *
+     * @return BitcoinAdresses
+     */
+    public function setShowAdress($showAdress)
+    {
+        $this->show_adress = $showAdress;
+
+        return $this;
+    }
+
+    /**
+     * Get showAdress
+     *
+     * @return integer
+     */
+    public function getShowAdress()
+    {
+        return $this->show_adress;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return BitcoinAdresses
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set walletsId
+     *
+     * @param integer $walletsId
+     *
+     * @return BitcoinAdresses
+     */
+    public function setWalletsId($walletsId)
+    {
+        $this->wallets_id = $walletsId;
+
+        return $this;
+    }
+
+    /**
+     * Get walletsId
+     *
+     * @return integer
+     */
+    public function getWalletsId()
+    {
+        return $this->wallets_id;
+    }
+
+    /**
+     * Set wallets
+     *
+     * @param \AppBundle\Entity\BitcoinWallets $wallets
+     *
+     * @return BitcoinAdresses
+     */
+    public function setWallets(\AppBundle\Entity\BitcoinWallets $wallets = null)
+    {
+        $this->wallets = $wallets;
+
+        return $this;
+    }
+
+    /**
+     * Get wallets
+     *
+     * @return \AppBundle\Entity\BitcoinWallets
+     */
+    public function getWallets()
+    {
+        return $this->wallets;
+    }
+}

@@ -1,0 +1,87 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="telesign_logging")
+ */
+class TelesignLogging
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $phonenumber;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $logtime;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set phonenumber
+     *
+     * @param string $phonenumber
+     *
+     * @return TelesignLogging
+     */
+    public function setPhonenumber($phonenumber)
+    {
+        $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phonenumber
+     *
+     * @return string
+     */
+    public function getPhonenumber()
+    {
+        return $this->phonenumber;
+    }
+
+    /**
+     * Set logtime
+     *
+     * @param \DateTime $logtime
+     *
+     * @return TelesignLogging
+     */
+    public function setLogtime($logtime)
+    {
+        $this->logtime = $logtime;
+
+        return $this;
+    }
+
+    /**
+     * Get logtime
+     *
+     * @return \DateTime
+     */
+    public function getLogtime()
+    {
+        return $this->logtime;
+    }
+}

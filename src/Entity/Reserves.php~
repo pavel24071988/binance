@@ -1,0 +1,145 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="reserves")
+ */
+class Reserves
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $currency_id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $currency_name;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $balance;
+
+    /**
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     */
+    private $date;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set currencyId
+     *
+     * @param integer $currencyId
+     *
+     * @return Reserves
+     */
+    public function setCurrencyId($currencyId)
+    {
+        $this->currency_id = $currencyId;
+
+        return $this;
+    }
+
+    /**
+     * Get currencyId
+     *
+     * @return integer
+     */
+    public function getCurrencyId()
+    {
+        return $this->currency_id;
+    }
+
+    /**
+     * Set currencyName
+     *
+     * @param string $currencyName
+     *
+     * @return Reserves
+     */
+    public function setCurrencyName($currencyName)
+    {
+        $this->currency_name = $currencyName;
+
+        return $this;
+    }
+
+    /**
+     * Get currencyName
+     *
+     * @return string
+     */
+    public function getCurrencyName()
+    {
+        return $this->currency_name;
+    }
+
+    /**
+     * Set balance
+     *
+     * @param float $balance
+     *
+     * @return Reserves
+     */
+    public function setBalance($balance)
+    {
+        $this->balance = $balance;
+
+        return $this;
+    }
+
+    /**
+     * Get balance
+     *
+     * @return float
+     */
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Reserves
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+}

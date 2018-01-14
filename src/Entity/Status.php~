@@ -1,0 +1,88 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="status")
+ */
+class Status
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $title_ru;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Status
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set titleRu
+     *
+     * @param string $titleRu
+     *
+     * @return Status
+     */
+    public function setTitleRu($titleRu)
+    {
+        $this->title_ru = $titleRu;
+
+        return $this;
+    }
+
+    /**
+     * Get titleRu
+     *
+     * @return string
+     */
+    public function getTitleRu()
+    {
+        return $this->title_ru;
+    }
+}

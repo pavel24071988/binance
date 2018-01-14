@@ -1,0 +1,495 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="details_cards")
+ */
+class DetailsCards
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $amount_card_default;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $trades_31_days;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $trades_1_days;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $max_card_amount;
+
+    /**
+     * @ORM\Column(type="float", options={"default":0})
+     */
+    private $amount_card;
+
+    /**
+     * @ORM\Column(type="float", options={"default":0})
+     */
+    private $amount_31_days;
+
+    /**
+     * @ORM\Column(type="float", options={"default":0})
+     */
+    private $amount_1_days;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $currency_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $details_group_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="DetailsGroups", inversedBy="DetailsCards")
+     * @ORM\JoinColumn(name="details_group_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $detailsgroups;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Currencies", inversedBy="DetailsCards")
+     * @ORM\JoinColumn(name="currency_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $currency;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hidden;
+
+    /**
+     * @ORM\Column(type="float", options={"default":0})
+     */
+    private $monthly_service;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return DetailsCards
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     *
+     * @return DetailsCards
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set amountCardDefault
+     *
+     * @param integer $amountCardDefault
+     *
+     * @return DetailsCards
+     */
+    public function setAmountCardDefault($amountCardDefault)
+    {
+        $this->amount_card_default = $amountCardDefault;
+
+        return $this;
+    }
+
+    /**
+     * Get amountCardDefault
+     *
+     * @return integer
+     */
+    public function getAmountCardDefault()
+    {
+        return $this->amount_card_default;
+    }
+
+    /**
+     * Set trades31Days
+     *
+     * @param integer $trades31Days
+     *
+     * @return DetailsCards
+     */
+    public function setTrades31Days($trades31Days)
+    {
+        $this->trades_31_days = $trades31Days;
+
+        return $this;
+    }
+
+    /**
+     * Get trades31Days
+     *
+     * @return integer
+     */
+    public function getTrades31Days()
+    {
+        return $this->trades_31_days;
+    }
+
+    /**
+     * Set trades1Days
+     *
+     * @param integer $trades1Days
+     *
+     * @return DetailsCards
+     */
+    public function setTrades1Days($trades1Days)
+    {
+        $this->trades_1_days = $trades1Days;
+
+        return $this;
+    }
+
+    /**
+     * Get trades1Days
+     *
+     * @return integer
+     */
+    public function getTrades1Days()
+    {
+        return $this->trades_1_days;
+    }
+
+    /**
+     * Set maxCardAmount
+     *
+     * @param float $maxCardAmount
+     *
+     * @return DetailsCards
+     */
+    public function setMaxCardAmount($maxCardAmount)
+    {
+        $this->max_card_amount = $maxCardAmount;
+
+        return $this;
+    }
+
+    /**
+     * Get maxCardAmount
+     *
+     * @return float
+     */
+    public function getMaxCardAmount()
+    {
+        return $this->max_card_amount;
+    }
+
+    /**
+     * Set amountCard
+     *
+     * @param float $amountCard
+     *
+     * @return DetailsCards
+     */
+    public function setAmountCard($amountCard)
+    {
+        $this->amount_card = $amountCard;
+
+        return $this;
+    }
+
+    /**
+     * Get amountCard
+     *
+     * @return float
+     */
+    public function getAmountCard()
+    {
+        return $this->amount_card;
+    }
+
+    /**
+     * Set amount31Days
+     *
+     * @param float $amount31Days
+     *
+     * @return DetailsCards
+     */
+    public function setAmount31Days($amount31Days)
+    {
+        $this->amount_31_days = $amount31Days;
+
+        return $this;
+    }
+
+    /**
+     * Get amount31Days
+     *
+     * @return float
+     */
+    public function getAmount31Days()
+    {
+        return $this->amount_31_days;
+    }
+
+    /**
+     * Set amount1Days
+     *
+     * @param float $amount1Days
+     *
+     * @return DetailsCards
+     */
+    public function setAmount1Days($amount1Days)
+    {
+        $this->amount_1_days = $amount1Days;
+
+        return $this;
+    }
+
+    /**
+     * Get amount1Days
+     *
+     * @return float
+     */
+    public function getAmount1Days()
+    {
+        return $this->amount_1_days;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return DetailsCards
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set currencyId
+     *
+     * @param integer $currencyId
+     *
+     * @return DetailsCards
+     */
+    public function setCurrencyId($currencyId)
+    {
+        $this->currency_id = $currencyId;
+
+        return $this;
+    }
+
+    /**
+     * Get currencyId
+     *
+     * @return integer
+     */
+    public function getCurrencyId()
+    {
+        return $this->currency_id;
+    }
+
+    /**
+     * Set detailsGroupId
+     *
+     * @param integer $detailsGroupId
+     *
+     * @return DetailsCards
+     */
+    public function setDetailsGroupId($detailsGroupId)
+    {
+        $this->details_group_id = $detailsGroupId;
+
+        return $this;
+    }
+
+    /**
+     * Get detailsGroupId
+     *
+     * @return integer
+     */
+    public function getDetailsGroupId()
+    {
+        return $this->details_group_id;
+    }
+
+    /**
+     * Set detailsgroups
+     *
+     * @param \AppBundle\Entity\DetailsGroups $detailsgroups
+     *
+     * @return DetailsCards
+     */
+    public function setDetailsgroups(\AppBundle\Entity\DetailsGroups $detailsgroups = null)
+    {
+        $this->detailsgroups = $detailsgroups;
+
+        return $this;
+    }
+
+    /**
+     * Get detailsgroups
+     *
+     * @return \AppBundle\Entity\DetailsGroups
+     */
+    public function getDetailsgroups()
+    {
+        return $this->detailsgroups;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param \AppBundle\Entity\Currencies $currency
+     *
+     * @return DetailsCards
+     */
+    public function setCurrency(\AppBundle\Entity\Currencies $currency = null)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return \AppBundle\Entity\Currencies
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Set hidden
+     *
+     * @param boolean $hidden
+     *
+     * @return DetailsCards
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * Get hidden
+     *
+     * @return boolean
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * Set monthlyService
+     *
+     * @param float $monthlyService
+     *
+     * @return DetailsCards
+     */
+    public function setMonthlyService($monthlyService)
+    {
+        $this->monthly_service = $monthlyService;
+
+        return $this;
+    }
+
+    /**
+     * Get monthlyService
+     *
+     * @return float
+     */
+    public function getMonthlyService()
+    {
+        return $this->monthly_service;
+    }
+}

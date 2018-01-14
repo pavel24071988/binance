@@ -1,0 +1,384 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="partner_direction_percent", uniqueConstraints={
+ *      @ORM\UniqueConstraint(name="upb_key", columns={"user_id", "pay_id", "buy_id"})
+ * })
+ */
+class PartnerDirectionPercent
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $user_id;
+
+    /**
+     * @ORM\Column(type="integer", length=11)
+     */
+    private $pay_id;
+
+    /**
+     * @ORM\Column(type="integer", length=11)
+     */
+    private $buy_id;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 100})
+     */
+    private $partner_percent_stage_1;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 100})
+     */
+    private $partner_percent_stage_2;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 100})
+     */
+    private $partner_percent_stage_3;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 100})
+     */
+    private $partner_percent_stage_4;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 100})
+     */
+    private $partner_percent_stage_5;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $extracoefficient;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="PartnerDirectionPercent")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $user_partner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="PartnerDirectionPercent")
+     * @ORM\JoinColumn(name="pay_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $payments_pay;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="PartnerDirectionPercent")
+     * @ORM\JoinColumn(name="buy_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $payments_buy;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set payId
+     *
+     * @param integer $payId
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPayId($payId)
+    {
+        $this->pay_id = $payId;
+
+        return $this;
+    }
+
+    /**
+     * Get payId
+     *
+     * @return integer
+     */
+    public function getPayId()
+    {
+        return $this->pay_id;
+    }
+
+    /**
+     * Set buyId
+     *
+     * @param integer $buyId
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setBuyId($buyId)
+    {
+        $this->buy_id = $buyId;
+
+        return $this;
+    }
+
+    /**
+     * Get buyId
+     *
+     * @return integer
+     */
+    public function getBuyId()
+    {
+        return $this->buy_id;
+    }
+
+    /**
+     * Set partnerPercentStage1
+     *
+     * @param float $partnerPercentStage1
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPartnerPercentStage1($partnerPercentStage1)
+    {
+        $this->partner_percent_stage_1 = $partnerPercentStage1;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage1
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage1()
+    {
+        return $this->partner_percent_stage_1;
+    }
+
+    /**
+     * Set partnerPercentStage2
+     *
+     * @param float $partnerPercentStage2
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPartnerPercentStage2($partnerPercentStage2)
+    {
+        $this->partner_percent_stage_2 = $partnerPercentStage2;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage2
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage2()
+    {
+        return $this->partner_percent_stage_2;
+    }
+
+    /**
+     * Set partnerPercentStage3
+     *
+     * @param float $partnerPercentStage3
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPartnerPercentStage3($partnerPercentStage3)
+    {
+        $this->partner_percent_stage_3 = $partnerPercentStage3;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage3
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage3()
+    {
+        return $this->partner_percent_stage_3;
+    }
+
+    /**
+     * Set partnerPercentStage4
+     *
+     * @param float $partnerPercentStage4
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPartnerPercentStage4($partnerPercentStage4)
+    {
+        $this->partner_percent_stage_4 = $partnerPercentStage4;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage4
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage4()
+    {
+        return $this->partner_percent_stage_4;
+    }
+
+    /**
+     * Set partnerPercentStage5
+     *
+     * @param float $partnerPercentStage5
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPartnerPercentStage5($partnerPercentStage5)
+    {
+        $this->partner_percent_stage_5 = $partnerPercentStage5;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerPercentStage5
+     *
+     * @return float
+     */
+    public function getPartnerPercentStage5()
+    {
+        return $this->partner_percent_stage_5;
+    }
+
+    /**
+     * Set extracoefficient
+     *
+     * @param float $extracoefficient
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setExtracoefficient($extracoefficient)
+    {
+        $this->extracoefficient = $extracoefficient;
+
+        return $this;
+    }
+
+    /**
+     * Get extracoefficient
+     *
+     * @return float
+     */
+    public function getExtracoefficient()
+    {
+        return $this->extracoefficient;
+    }
+
+    /**
+     * Set userPartner
+     *
+     * @param \AppBundle\Entity\User $userPartner
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setUserPartner(\AppBundle\Entity\User $userPartner = null)
+    {
+        $this->user_partner = $userPartner;
+
+        return $this;
+    }
+
+    /**
+     * Get userPartner
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUserPartner()
+    {
+        return $this->user_partner;
+    }
+
+    /**
+     * Set paymentsPay
+     *
+     * @param \AppBundle\Entity\Payments $paymentsPay
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPaymentsPay(\AppBundle\Entity\Payments $paymentsPay = null)
+    {
+        $this->payments_pay = $paymentsPay;
+
+        return $this;
+    }
+
+    /**
+     * Get paymentsPay
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getPaymentsPay()
+    {
+        return $this->payments_pay;
+    }
+
+    /**
+     * Set paymentsBuy
+     *
+     * @param \AppBundle\Entity\Payments $paymentsBuy
+     *
+     * @return PartnerDirectionPercent
+     */
+    public function setPaymentsBuy(\AppBundle\Entity\Payments $paymentsBuy = null)
+    {
+        $this->payments_buy = $paymentsBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get paymentsBuy
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getPaymentsBuy()
+    {
+        return $this->payments_buy;
+    }
+}

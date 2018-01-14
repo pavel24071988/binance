@@ -1,0 +1,1142 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="exchanges")
+ */
+class Exchanges
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $user_id;
+
+    /**
+     * @ORM\Column(type="integer", length=2)
+     */
+    private $sell_id;
+
+    /**
+     * @ORM\Column(type="integer", length=2)
+     */
+    private $buy_id;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $startofexchange;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $endofexchange;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $bildnumber;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $cardnumber;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $fio;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $buyamount;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 0})
+     */
+    private $buyamountcomission;
+
+    /**
+     * @ORM\Column(type="float", options={"default": 0})
+     */
+    private $outcomission;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $sellamount;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="integer", length=1, options={"default": 1})
+     */
+    private $status_id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $hashlink;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phonenumber;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $bitcoinadress;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $to_bitcoin_adress_id;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $unk;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $bankname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $monroadress;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $partner_id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $last_buy;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $last_sell;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @ORM\Column(type="integer", length=1, options={"default": 1})
+     */
+    private $send_mails;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $btcusd_last;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $usdrub_last;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $usdeur_last;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $client_ip;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $detail_card;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $should_check;
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $info = [];
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Exchanges")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $exchange_user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="Exchanges")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $exchange_status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Exchanges")
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $exchange_partner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="Exchanges")
+     * @ORM\JoinColumn(name="sell_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $exchange_sell;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Payments", inversedBy="Exchanges")
+     * @ORM\JoinColumn(name="buy_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $exchange_buy;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BitcoinAdresses", inversedBy="Exchanges")
+     * @ORM\JoinColumn(name="to_bitcoin_adress_id", referencedColumnName="id", onDelete="NO ACTION")
+     */
+    private $exchange_bitcoin_adress;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Exchanges
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set sellId
+     *
+     * @param integer $sellId
+     *
+     * @return Exchanges
+     */
+    public function setSellId($sellId)
+    {
+        $this->sell_id = $sellId;
+
+        return $this;
+    }
+
+    /**
+     * Get sellId
+     *
+     * @return integer
+     */
+    public function getSellId()
+    {
+        return $this->sell_id;
+    }
+
+    /**
+     * Set buyId
+     *
+     * @param integer $buyId
+     *
+     * @return Exchanges
+     */
+    public function setBuyId($buyId)
+    {
+        $this->buy_id = $buyId;
+
+        return $this;
+    }
+
+    /**
+     * Get buyId
+     *
+     * @return integer
+     */
+    public function getBuyId()
+    {
+        return $this->buy_id;
+    }
+
+    /**
+     * Set startofexchange
+     *
+     * @param \DateTime $startofexchange
+     *
+     * @return Exchanges
+     */
+    public function setStartofexchange($startofexchange)
+    {
+        $this->startofexchange = $startofexchange;
+
+        return $this;
+    }
+
+    /**
+     * Get startofexchange
+     *
+     * @return \DateTime
+     */
+    public function getStartofexchange()
+    {
+        return $this->startofexchange;
+    }
+
+    /**
+     * Set endofexchange
+     *
+     * @param \DateTime $endofexchange
+     *
+     * @return Exchanges
+     */
+    public function setEndofexchange($endofexchange)
+    {
+        $this->endofexchange = $endofexchange;
+
+        return $this;
+    }
+
+    /**
+     * Get endofexchange
+     *
+     * @return \DateTime
+     */
+    public function getEndofexchange()
+    {
+        return $this->endofexchange;
+    }
+
+    /**
+     * Set bildnumber
+     *
+     * @param string $bildnumber
+     *
+     * @return Exchanges
+     */
+    public function setBildnumber($bildnumber)
+    {
+        $this->bildnumber = $bildnumber;
+
+        return $this;
+    }
+
+    /**
+     * Get bildnumber
+     *
+     * @return string
+     */
+    public function getBildnumber()
+    {
+        return $this->bildnumber;
+    }
+
+    /**
+     * Set cardnumber
+     *
+     * @param string $cardnumber
+     *
+     * @return Exchanges
+     */
+    public function setCardnumber($cardnumber)
+    {
+        $this->cardnumber = $cardnumber;
+
+        return $this;
+    }
+
+    /**
+     * Get cardnumber
+     *
+     * @return string
+     */
+    public function getCardnumber()
+    {
+        return $this->cardnumber;
+    }
+
+    /**
+     * Set fio
+     *
+     * @param string $fio
+     *
+     * @return Exchanges
+     */
+    public function setFio($fio)
+    {
+        $this->fio = $fio;
+
+        return $this;
+    }
+
+    /**
+     * Get fio
+     *
+     * @return string
+     */
+    public function getFio()
+    {
+        return $this->fio;
+    }
+
+    /**
+     * Set buyamount
+     *
+     * @param float $buyamount
+     *
+     * @return Exchanges
+     */
+    public function setBuyamount($buyamount)
+    {
+        $this->buyamount = $buyamount;
+
+        return $this;
+    }
+
+    /**
+     * Get buyamount
+     *
+     * @return float
+     */
+    public function getBuyamount()
+    {
+        return $this->buyamount;
+    }
+
+    /**
+     * Set sellamount
+     *
+     * @param float $sellamount
+     *
+     * @return Exchanges
+     */
+    public function setSellamount($sellamount)
+    {
+        $this->sellamount = $sellamount;
+
+        return $this;
+    }
+
+    /**
+     * Get sellamount
+     *
+     * @return float
+     */
+    public function getSellamount()
+    {
+        return $this->sellamount;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Exchanges
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set statusId
+     *
+     * @param integer $statusId
+     *
+     * @return Exchanges
+     */
+    public function setStatusId($statusId)
+    {
+        $this->status_id = $statusId;
+
+        return $this;
+    }
+
+    /**
+     * Get statusId
+     *
+     * @return integer
+     */
+    public function getStatusId()
+    {
+        return $this->status_id;
+    }
+
+    /**
+     * Set hashlink
+     *
+     * @param string $hashlink
+     *
+     * @return Exchanges
+     */
+    public function setHashlink($hashlink)
+    {
+        $this->hashlink = $hashlink;
+
+        return $this;
+    }
+
+    /**
+     * Get hashlink
+     *
+     * @return string
+     */
+    public function getHashlink()
+    {
+        return $this->hashlink;
+    }
+
+    /**
+     * Set phonenumber
+     *
+     * @param string $phonenumber
+     *
+     * @return Exchanges
+     */
+    public function setPhonenumber($phonenumber)
+    {
+        $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phonenumber
+     *
+     * @return string
+     */
+    public function getPhonenumber()
+    {
+        return $this->phonenumber;
+    }
+
+    /**
+     * Set bitcoinadress
+     *
+     * @param string $bitcoinadress
+     *
+     * @return Exchanges
+     */
+    public function setBitcoinadress($bitcoinadress)
+    {
+        $this->bitcoinadress = $bitcoinadress;
+
+        return $this;
+    }
+
+    /**
+     * Get bitcoinadress
+     *
+     * @return string
+     */
+    public function getBitcoinadress()
+    {
+        return $this->bitcoinadress;
+    }
+
+    /**
+     * Set toBitcoinAdressId
+     *
+     * @param integer $toBitcoinAdressId
+     *
+     * @return Exchanges
+     */
+    public function setToBitcoinAdressId($toBitcoinAdressId)
+    {
+        $this->to_bitcoin_adress_id = $toBitcoinAdressId;
+
+        return $this;
+    }
+
+    /**
+     * Get toBitcoinAdressId
+     *
+     * @return integer
+     */
+    public function getToBitcoinAdressId()
+    {
+        return $this->to_bitcoin_adress_id;
+    }
+
+    /**
+     * Set unk
+     *
+     * @param string $unk
+     *
+     * @return Exchanges
+     */
+    public function setUnk($unk)
+    {
+        $this->unk = $unk;
+
+        return $this;
+    }
+
+    /**
+     * Get unk
+     *
+     * @return string
+     */
+    public function getUnk()
+    {
+        return $this->unk;
+    }
+
+    /**
+     * Set bankname
+     *
+     * @param string $bankname
+     *
+     * @return Exchanges
+     */
+    public function setBankname($bankname)
+    {
+        $this->bankname = $bankname;
+
+        return $this;
+    }
+
+    /**
+     * Get bankname
+     *
+     * @return string
+     */
+    public function getBankname()
+    {
+        return $this->bankname;
+    }
+
+    /**
+     * Set monroadress
+     *
+     * @param string $monroadress
+     *
+     * @return Exchanges
+     */
+    public function setMonroadress($monroadress)
+    {
+        $this->monroadress = $monroadress;
+
+        return $this;
+    }
+
+    /**
+     * Get monroadress
+     *
+     * @return string
+     */
+    public function getMonroadress()
+    {
+        return $this->monroadress;
+    }
+
+    /**
+     * Set partnerId
+     *
+     * @param integer $partnerId
+     *
+     * @return Exchanges
+     */
+    public function setPartnerId($partnerId)
+    {
+        $this->partner_id = $partnerId;
+
+        return $this;
+    }
+
+    /**
+     * Get partnerId
+     *
+     * @return integer
+     */
+    public function getPartnerId()
+    {
+        return $this->partner_id;
+    }
+
+    /**
+     * Set lastBuy
+     *
+     * @param string $lastBuy
+     *
+     * @return Exchanges
+     */
+    public function setLastBuy($lastBuy)
+    {
+        $this->last_buy = $lastBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get lastBuy
+     *
+     * @return string
+     */
+    public function getLastBuy()
+    {
+        return $this->last_buy;
+    }
+
+    /**
+     * Set lastSell
+     *
+     * @param string $lastSell
+     *
+     * @return Exchanges
+     */
+    public function setLastSell($lastSell)
+    {
+        $this->last_sell = $lastSell;
+
+        return $this;
+    }
+
+    /**
+     * Get lastSell
+     *
+     * @return string
+     */
+    public function getLastSell()
+    {
+        return $this->last_sell;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Exchanges
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set sendMails
+     *
+     * @param integer $sendMails
+     *
+     * @return Exchanges
+     */
+    public function setSendMails($sendMails)
+    {
+        $this->send_mails = $sendMails;
+
+        return $this;
+    }
+
+    /**
+     * Get sendMails
+     *
+     * @return integer
+     */
+    public function getSendMails()
+    {
+        return $this->send_mails;
+    }
+
+    /**
+     * Set btcusdLast
+     *
+     * @param string $btcusdLast
+     *
+     * @return Exchanges
+     */
+    public function setBtcusdLast($btcusdLast)
+    {
+        $this->btcusd_last = $btcusdLast;
+
+        return $this;
+    }
+
+    /**
+     * Get btcusdLast
+     *
+     * @return string
+     */
+    public function getBtcusdLast()
+    {
+        return $this->btcusd_last;
+    }
+
+    /**
+     * Set usdrubLast
+     *
+     * @param string $usdrubLast
+     *
+     * @return Exchanges
+     */
+    public function setUsdrubLast($usdrubLast)
+    {
+        $this->usdrub_last = $usdrubLast;
+
+        return $this;
+    }
+
+    /**
+     * Get usdrubLast
+     *
+     * @return string
+     */
+    public function getUsdrubLast()
+    {
+        return $this->usdrub_last;
+    }
+
+    /**
+     * Set usdeurLast
+     *
+     * @param string $usdeurLast
+     *
+     * @return Exchanges
+     */
+    public function setUsdeurLast($usdeurLast)
+    {
+        $this->usdeur_last = $usdeurLast;
+
+        return $this;
+    }
+
+    /**
+     * Get usdeurLast
+     *
+     * @return string
+     */
+    public function getUsdeurLast()
+    {
+        return $this->usdeur_last;
+    }
+
+    /**
+     * Set clientIp
+     *
+     * @param string $clientIp
+     *
+     * @return Exchanges
+     */
+    public function setClientIp($clientIp)
+    {
+        $this->client_ip = $clientIp;
+
+        return $this;
+    }
+
+    /**
+     * Get clientIp
+     *
+     * @return string
+     */
+    public function getClientIp()
+    {
+        return $this->client_ip;
+    }
+
+    /**
+     * Set detailCard
+     *
+     * @param integer $detailCard
+     *
+     * @return Exchanges
+     */
+    public function setDetailCard($detailCard)
+    {
+        $this->detail_card = $detailCard;
+
+        return $this;
+    }
+
+    /**
+     * Get detailCard
+     *
+     * @return integer
+     */
+    public function getDetailCard()
+    {
+        return $this->detail_card;
+    }
+
+    /**
+     * Set info
+     *
+     * @param array $info
+     *
+     * @return Exchanges
+     */
+    public function setInfo($info)
+    {
+        $this->info = $info;
+
+        return $this;
+    }
+
+    /**
+     * Get info
+     *
+     * @return array
+     */
+    public function getInfo()
+    {
+        return $this->info;
+    }
+
+    /**
+     * Set exchangeUser
+     *
+     * @param \AppBundle\Entity\User $exchangeUser
+     *
+     * @return Exchanges
+     */
+    public function setExchangeUser(\AppBundle\Entity\User $exchangeUser = null)
+    {
+        $this->exchange_user = $exchangeUser;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getExchangeUser()
+    {
+        return $this->exchange_user;
+    }
+
+    /**
+     * Set exchangeStatus
+     *
+     * @param \AppBundle\Entity\Status $exchangeStatus
+     *
+     * @return Exchanges
+     */
+    public function setExchangeStatus(\AppBundle\Entity\Status $exchangeStatus = null)
+    {
+        $this->exchange_status = $exchangeStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeStatus
+     *
+     * @return \AppBundle\Entity\Status
+     */
+    public function getExchangeStatus()
+    {
+        return $this->exchange_status;
+    }
+
+    /**
+     * Set exchangePartner
+     *
+     * @param \AppBundle\Entity\User $exchangePartner
+     *
+     * @return Exchanges
+     */
+    public function setExchangePartner(\AppBundle\Entity\User $exchangePartner = null)
+    {
+        $this->exchange_partner = $exchangePartner;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangePartner
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getExchangePartner()
+    {
+        return $this->exchange_partner;
+    }
+
+    /**
+     * Set exchangeSell
+     *
+     * @param \AppBundle\Entity\Payments $exchangeSell
+     *
+     * @return Exchanges
+     */
+    public function setExchangeSell(\AppBundle\Entity\Payments $exchangeSell = null)
+    {
+        $this->exchange_sell = $exchangeSell;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeSell
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getExchangeSell()
+    {
+        return $this->exchange_sell;
+    }
+
+    /**
+     * Set exchangeBuy
+     *
+     * @param \AppBundle\Entity\Payments $exchangeBuy
+     *
+     * @return Exchanges
+     */
+    public function setExchangeBuy(\AppBundle\Entity\Payments $exchangeBuy = null)
+    {
+        $this->exchange_buy = $exchangeBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeBuy
+     *
+     * @return \AppBundle\Entity\Payments
+     */
+    public function getExchangeBuy()
+    {
+        return $this->exchange_buy;
+    }
+
+    /**
+     * Set exchangeBitcoinAdress
+     *
+     * @param \AppBundle\Entity\BitcoinAdresses $exchangeBitcoinAdress
+     *
+     * @return Exchanges
+     */
+    public function setExchangeBitcoinAdress(\AppBundle\Entity\BitcoinAdresses $exchangeBitcoinAdress = null)
+    {
+        $this->exchange_bitcoin_adress = $exchangeBitcoinAdress;
+
+        return $this;
+    }
+
+    /**
+     * Get exchangeBitcoinAdress
+     *
+     * @return \AppBundle\Entity\BitcoinAdresses
+     */
+    public function getExchangeBitcoinAdress()
+    {
+        return $this->exchange_bitcoin_adress;
+    }
+
+    /**
+     * Set buyamountcomission
+     *
+     * @param float $buyamountcomission
+     *
+     * @return Exchanges
+     */
+    public function setBuyamountcomission($buyamountcomission)
+    {
+        $this->buyamountcomission = $buyamountcomission;
+
+        return $this;
+    }
+
+    /**
+     * Get buyamountcomission
+     *
+     * @return float
+     */
+    public function getBuyamountcomission()
+    {
+        return $this->buyamountcomission;
+    }
+
+    /**
+     * Set outcomission
+     *
+     * @param float $outcomission
+     *
+     * @return Exchanges
+     */
+    public function setOutcomission($outcomission)
+    {
+        $this->outcomission = $outcomission;
+
+        return $this;
+    }
+
+    /**
+     * Get outcomission
+     *
+     * @return float
+     */
+    public function getOutcomission()
+    {
+        return $this->outcomission;
+    }
+}

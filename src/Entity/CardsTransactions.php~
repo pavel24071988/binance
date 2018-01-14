@@ -1,0 +1,263 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="cards_transactions")
+ */
+class CardsTransactions
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $from_card_id;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $amount_from;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $to_card_id;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $amount_to;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="DetailsCards", inversedBy="CardsTransactions")
+     * @ORM\JoinColumn(name="from_card_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $from_card;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="DetailsCards", inversedBy="CardsTransactions")
+     * @ORM\JoinColumn(name="to_card_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $to_card;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return CardsTransactions
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return CardsTransactions
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set fromCardId
+     *
+     * @param integer $fromCardId
+     *
+     * @return CardsTransactions
+     */
+    public function setFromCardId($fromCardId)
+    {
+        $this->from_card_id = $fromCardId;
+
+        return $this;
+    }
+
+    /**
+     * Get fromCardId
+     *
+     * @return integer
+     */
+    public function getFromCardId()
+    {
+        return $this->from_card_id;
+    }
+
+    /**
+     * Set amountFrom
+     *
+     * @param float $amountFrom
+     *
+     * @return CardsTransactions
+     */
+    public function setAmountFrom($amountFrom)
+    {
+        $this->amount_from = $amountFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get amountFrom
+     *
+     * @return float
+     */
+    public function getAmountFrom()
+    {
+        return $this->amount_from;
+    }
+
+    /**
+     * Set toCardId
+     *
+     * @param integer $toCardId
+     *
+     * @return CardsTransactions
+     */
+    public function setToCardId($toCardId)
+    {
+        $this->to_card_id = $toCardId;
+
+        return $this;
+    }
+
+    /**
+     * Get toCardId
+     *
+     * @return integer
+     */
+    public function getToCardId()
+    {
+        return $this->to_card_id;
+    }
+
+    /**
+     * Set amountTo
+     *
+     * @param float $amountTo
+     *
+     * @return CardsTransactions
+     */
+    public function setAmountTo($amountTo)
+    {
+        $this->amount_to = $amountTo;
+
+        return $this;
+    }
+
+    /**
+     * Get amountTo
+     *
+     * @return float
+     */
+    public function getAmountTo()
+    {
+        return $this->amount_to;
+    }
+
+    /**
+     * Set fromCard
+     *
+     * @param \AppBundle\Entity\DetailsCards $fromCard
+     *
+     * @return CardsTransactions
+     */
+    public function setFromCard(\AppBundle\Entity\DetailsCards $fromCard = null)
+    {
+        $this->from_card = $fromCard;
+
+        return $this;
+    }
+
+    /**
+     * Get fromCard
+     *
+     * @return \AppBundle\Entity\DetailsCards
+     */
+    public function getFromCard()
+    {
+        return $this->from_card;
+    }
+
+    /**
+     * Set toCard
+     *
+     * @param \AppBundle\Entity\DetailsCards $toCard
+     *
+     * @return CardsTransactions
+     */
+    public function setToCard(\AppBundle\Entity\DetailsCards $toCard = null)
+    {
+        $this->to_card = $toCard;
+
+        return $this;
+    }
+
+    /**
+     * Get toCard
+     *
+     * @return \AppBundle\Entity\DetailsCards
+     */
+    public function getToCard()
+    {
+        return $this->to_card;
+    }
+}

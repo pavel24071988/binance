@@ -1,0 +1,204 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="exchange_rates_logging")
+ */
+class ExchangeRatesLogging
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $pay_id;
+
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $buy_id;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $buy;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $sell;
+
+    /**
+     * @ORM\Column(type="integer", length=11)
+     */
+    private $dateofparse;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $last;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set payId
+     *
+     * @param string $payId
+     *
+     * @return ExchangeRatesLogging
+     */
+    public function setPayId($payId)
+    {
+        $this->pay_id = $payId;
+
+        return $this;
+    }
+
+    /**
+     * Get payId
+     *
+     * @return string
+     */
+    public function getPayId()
+    {
+        return $this->pay_id;
+    }
+
+    /**
+     * Set buyId
+     *
+     * @param string $buyId
+     *
+     * @return ExchangeRatesLogging
+     */
+    public function setBuyId($buyId)
+    {
+        $this->buy_id = $buyId;
+
+        return $this;
+    }
+
+    /**
+     * Get buyId
+     *
+     * @return string
+     */
+    public function getBuyId()
+    {
+        return $this->buy_id;
+    }
+
+    /**
+     * Set buy
+     *
+     * @param float $buy
+     *
+     * @return ExchangeRatesLogging
+     */
+    public function setBuy($buy)
+    {
+        $this->buy = $buy;
+
+        return $this;
+    }
+
+    /**
+     * Get buy
+     *
+     * @return float
+     */
+    public function getBuy()
+    {
+        return $this->buy;
+    }
+
+    /**
+     * Set sell
+     *
+     * @param float $sell
+     *
+     * @return ExchangeRatesLogging
+     */
+    public function setSell($sell)
+    {
+        $this->sell = $sell;
+
+        return $this;
+    }
+
+    /**
+     * Get sell
+     *
+     * @return float
+     */
+    public function getSell()
+    {
+        return $this->sell;
+    }
+
+    /**
+     * Set dateofparse
+     *
+     * @param integer $dateofparse
+     *
+     * @return ExchangeRatesLogging
+     */
+    public function setDateofparse($dateofparse)
+    {
+        $this->dateofparse = $dateofparse;
+
+        return $this;
+    }
+
+    /**
+     * Get dateofparse
+     *
+     * @return integer
+     */
+    public function getDateofparse()
+    {
+        return $this->dateofparse;
+    }
+
+    /**
+     * Set last
+     *
+     * @param float $last
+     *
+     * @return ExchangeRatesLogging
+     */
+    public function setLast($last)
+    {
+        $this->last = $last;
+
+        return $this;
+    }
+
+    /**
+     * Get last
+     *
+     * @return float
+     */
+    public function getLast()
+    {
+        return $this->last;
+    }
+}
