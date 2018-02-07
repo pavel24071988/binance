@@ -79,7 +79,7 @@ class CoursesApiCommand extends ContainerAwareCommand
             $name = $pair->appendChild($xml->createElement('name'));
             $name->appendChild($xml->createTextNode($pair));
             $last = $pair->appendChild($xml->createElement('last'));
-            $last->appendChild($xml->createTextNode((string) $course->value));
+            $last->appendChild($xml->createTextNode(1));
         }
         $xml->formatOutput = true;
         $xml->save(__DIR__ . '/../../public/courses.xml');
