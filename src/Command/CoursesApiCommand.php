@@ -75,14 +75,11 @@ class CoursesApiCommand extends ContainerAwareCommand
         $courses = json_decode($courses);
 
         foreach ($courses->courses as $pair => $course) {
-            var_dump($pair);
-            var_dump($course);
-            
-            $name = (string) $pair;
+            $name = 'BTCUSD';
             $value = (string) $course->value;
             $pair = $rates->appendChild($xml->createElement('pair'));
             $name = $pair->appendChild($xml->createElement('name'));
-            $name->appendChild($xml->createTextNode(1));
+            $name->appendChild($xml->createTextNode($name));
             $last = $pair->appendChild($xml->createElement('last'));
             $last->appendChild($xml->createTextNode($value));
         }
