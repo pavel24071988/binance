@@ -37,7 +37,7 @@ class CoursesApiCommand extends ContainerAwareCommand
         $courses = json_decode($courses);
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        /*$xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';*/
         foreach ($courses as $course) {
             if (in_array($course->symbol, $pairsToParsing)) {
                 $xml .= '<pair>';
@@ -57,7 +57,7 @@ class CoursesApiCommand extends ContainerAwareCommand
             $xml .= '</pair>';
         }
 
-        $xml.="</urlset>";
+        /*$xml.="</urlset>";*/
 
         $fp = fopen(__DIR__ . '/../../public/courses.xml', 'w');
         fwrite($fp, $xml);
