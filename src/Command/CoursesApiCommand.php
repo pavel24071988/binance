@@ -78,12 +78,15 @@ class CoursesApiCommand extends ContainerAwareCommand
             var_dump($pair);
             var_dump($course);
             
+            $name = (string) $pair;
+            $value = (string) $course->value;
             $pair = $rates->appendChild($xml->createElement('pair'));
             $name = $pair->appendChild($xml->createElement('name'));
-            $name->appendChild($xml->createTextNode((string) $pair));
+            $name->appendChild($xml->createTextNode($name));
             $last = $pair->appendChild($xml->createElement('last'));
-            $last->appendChild($xml->createTextNode($course->value));
+            $last->appendChild($xml->createTextNode($value));
         }
+
         $xml->formatOutput = true;
         $xml->save(__DIR__ . '/../../public/courses.xml');
     }
