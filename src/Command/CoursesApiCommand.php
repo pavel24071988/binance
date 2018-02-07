@@ -74,14 +74,12 @@ class CoursesApiCommand extends ContainerAwareCommand
         $courses = file_get_contents('https://askoin.com/api/courses_avg?key=rg6Ysk4da89ac_w&pairs=BTCUSD');
         $courses = json_decode($courses);
 
-        foreach ($courses->courses as $pair => $course) {
-            $name = 'BTCUSD';
-            $value = (string) $course->value;
+        foreach ($courses->courses as $pairName => $course) {
             $pair = $rates->appendChild($xml->createElement('pair'));
             $name = $pair->appendChild($xml->createElement('name'));
-            $name->appendChild($xml->createTextNode($name));
+            $name->appendChild($xml->createTextNode($pairName));
             $last = $pair->appendChild($xml->createElement('last'));
-            $last->appendChild($xml->createTextNode($value));
+            $last->appendChild($xml->createTextNode($course->value));
         }
 
         $xml->formatOutput = true;
