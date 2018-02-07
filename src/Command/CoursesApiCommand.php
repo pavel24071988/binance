@@ -82,7 +82,7 @@ class CoursesApiCommand extends ContainerAwareCommand
             $value = (string) $course->value;
             $pair = $rates->appendChild($xml->createElement('pair'));
             $name = $pair->appendChild($xml->createElement('name'));
-            $name->appendChild($xml->createTextNode($name));
+            $name->appendChild($xml->createTextNode(1));
             $last = $pair->appendChild($xml->createElement('last'));
             $last->appendChild($xml->createTextNode($value));
         }
