@@ -36,8 +36,8 @@ class CoursesApiCommand extends ContainerAwareCommand
         $courses = file_get_contents('https://www.binance.com/api/v1/ticker/24hr');
         $courses = json_decode($courses);
 
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-        /*$xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';*/
+        /*$xml = '<?xml version="1.0" encoding="UTF-8"?>';
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
         foreach ($courses as $course) {
             if (in_array($course->symbol, $pairsToParsing)) {
                 $xml .= '<pair>';
@@ -57,10 +57,31 @@ class CoursesApiCommand extends ContainerAwareCommand
             $xml .= '</pair>';
         }
 
-        /*$xml.="</urlset>";*/
+        $xml.="</urlset>";*/
+        
+        $xml = new \DOMDocument();
+        $rates = $xml->appendChild($xml->createElement('rates'));
+        foreach ($courses as $course) {
+            if (in_array($course->symbol, $pairsToParsing)) {
+                $pair = $rates->appendChild($xml->createElement('pair'));
+                $name = $direction->appendChild($xml->createElement('name'));
+                $name->appendChild($xml->createTextNode($course->symbol));
+                $last = $direction->appendChild($xml->createElement('last'));
+                $last->appendChild($xml->createTextNode($course->lastPrice));
+            }
+        }
+        
+        $courses = file_get_contents('https://askoin.com/api/courses_avg?key=rg6Ysk4da89ac_w&pairs=BTCUSD');
+        $courses = json_decode($courses);
 
-        $fp = fopen(__DIR__ . '/../../public/courses.xml', 'w');
-        fwrite($fp, $xml);
-        fclose($fp);
+        foreach ($courses->courses as $pair => $course) {
+            $pair = $rates->appendChild($xml->createElement('pair'));
+            $name = $direction->appendChild($xml->createElement('name'));
+            $name->appendChild($xml->createTextNode($pair));
+            $last = $direction->appendChild($xml->createElement('last'));
+            $last->appendChild($xml->createTextNode($course->value));
+        }
+        $xml->formatOutput = true;
+        $xml->save(__DIR__ . '/../../public/courses.xml');
     }
 }
