@@ -77,7 +77,7 @@ class CoursesApiCommand extends ContainerAwareCommand
         foreach ($courses->courses as $pair => $course) {
             $pair = $rates->appendChild($xml->createElement('pair'));
             $name = $pair->appendChild($xml->createElement('name'));
-            $name->appendChild($xml->createTextNode($pair));
+            $name->appendChild($xml->createTextNode(1));
             $last = $pair->appendChild($xml->createElement('last'));
             $last->appendChild($xml->createTextNode(1));
         }
