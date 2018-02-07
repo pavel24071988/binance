@@ -75,11 +75,13 @@ class CoursesApiCommand extends ContainerAwareCommand
         $courses = json_decode($courses);
 
         foreach ($courses->courses as $pair => $course) {
+            var_dump($pair);
+            
             $pair = $rates->appendChild($xml->createElement('pair'));
             $name = $pair->appendChild($xml->createElement('name'));
-            $name->appendChild($xml->createTextNode(1));
+            $name->appendChild($xml->createTextNode($pair));
             $last = $pair->appendChild($xml->createElement('last'));
-            $last->appendChild($xml->createTextNode(1));
+            $last->appendChild($xml->createTextNode($course->value));
         }
         $xml->formatOutput = true;
         $xml->save(__DIR__ . '/../../public/courses.xml');
