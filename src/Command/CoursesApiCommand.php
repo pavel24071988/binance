@@ -64,9 +64,9 @@ class CoursesApiCommand extends ContainerAwareCommand
         foreach ($courses as $course) {
             if (in_array($course->symbol, $pairsToParsing)) {
                 $pair = $rates->appendChild($xml->createElement('pair'));
-                $name = $direction->appendChild($xml->createElement('name'));
+                $name = $pair->appendChild($xml->createElement('name'));
                 $name->appendChild($xml->createTextNode($course->symbol));
-                $last = $direction->appendChild($xml->createElement('last'));
+                $last = $pair->appendChild($xml->createElement('last'));
                 $last->appendChild($xml->createTextNode($course->lastPrice));
             }
         }
@@ -76,9 +76,9 @@ class CoursesApiCommand extends ContainerAwareCommand
 
         foreach ($courses->courses as $pair => $course) {
             $pair = $rates->appendChild($xml->createElement('pair'));
-            $name = $direction->appendChild($xml->createElement('name'));
+            $name = $pair->appendChild($xml->createElement('name'));
             $name->appendChild($xml->createTextNode($pair));
-            $last = $direction->appendChild($xml->createElement('last'));
+            $last = $pair->appendChild($xml->createElement('last'));
             $last->appendChild($xml->createTextNode($course->value));
         }
         $xml->formatOutput = true;
