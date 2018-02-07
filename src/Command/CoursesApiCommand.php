@@ -78,6 +78,7 @@ class CoursesApiCommand extends ContainerAwareCommand
         $courses = json_decode($courses);
 
         foreach ($courses->courses as $pair => $course) {
+            var_dump(111);
             var_dump($pair);
             var_dump($course->value);
             
