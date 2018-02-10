@@ -33,7 +33,8 @@ class CoursesApiCommand extends ContainerAwareCommand
             'ICXBTC', 'CNDBTC', 'QTUMBTC', 'QASHBTC', 'OMGBTC',
             'QSPBTC'
         ];
-        $courses = file_get_contents('https://www.binance.com/api/v1/ticker/24hr');
+        //$courses = file_get_contents('https://www.binance.com/api/v1/ticker/24hr');
+        $courses = file_get_contents('https://us.binance.com/api/v1/ticker/24hr');
         $courses = json_decode($courses);
 
         /*$xml = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -58,7 +59,7 @@ class CoursesApiCommand extends ContainerAwareCommand
         }
 
         $xml.="</urlset>";*/
-        
+
         $xml = new \DOMDocument();
         $rates = $xml->appendChild($xml->createElement('rates'));
         foreach ($courses as $course) {
@@ -70,7 +71,7 @@ class CoursesApiCommand extends ContainerAwareCommand
                 $last->appendChild($xml->createTextNode($course->lastPrice));
             }
         }
-        
+
         $courses = file_get_contents('https://askoin.com/api/courses_avg?key=rg6Ysk4da89ac_w&pairs=BTCUSD');
         $courses = json_decode($courses);
 
